@@ -5,7 +5,9 @@ detekt {
 
     reports {
         html.enabled = true
-        xml.enabled = true
-        txt.enabled = true
+    }
+
+    dependencies {
+        detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion")
     }
 }

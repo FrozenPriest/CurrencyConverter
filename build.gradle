@@ -1,9 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlinVersion = "1.6.10"
+    ext.kotlinVersion = "1.7.10"
 
     // https://github.com/JLLeitschuh/ktlint-gradle/releases
-    ext.ktlintPluginVersion = "10.0.0"
+    ext.ktlintPluginVersion = "10.3.0"
 
     // https://github.com/detekt/detekt/releases
     ext.detektVersion = "1.17.0"
@@ -20,7 +20,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:7.1.2"
+        classpath 'com.android.tools.build:gradle:7.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:$ktlintPluginVersion"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion"
@@ -33,7 +33,6 @@ buildscript {
 
 apply from: "buildscripts/versions.gradle"
 apply from: "buildscripts/githooks.gradle"
-apply from: "buildscripts/setup.gradle"
 
 subprojects {
     apply from: "../buildscripts/ktlint.gradle"
