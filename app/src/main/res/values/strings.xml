@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Currency Converter</string>
+    <string name="label_popular">Popular</string>
+    <string name="label_favourite">Favorite</string>
 </resources>

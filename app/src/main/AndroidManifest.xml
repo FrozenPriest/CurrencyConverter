@@ -12,7 +12,7 @@
         android:theme="@style/Theme.AppTheme">
 
         <activity
-            android:name="ru.frozenpriest.curconv.MainActivity"
+            android:name="ru.frozenpriest.curconv.ui.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppTheme.NoActionBar">
             <intent-filter>

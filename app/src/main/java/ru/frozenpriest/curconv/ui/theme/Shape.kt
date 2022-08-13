@@ -1,4 +1,4 @@
-package ru.frozenpriest.curconv.theme
+package ru.frozenpriest.curconv.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

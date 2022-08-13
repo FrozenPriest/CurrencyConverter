@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package ru.frozenpriest.curconv.theme
+package ru.frozenpriest.curconv.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

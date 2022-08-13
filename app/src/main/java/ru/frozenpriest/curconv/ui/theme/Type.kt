@@ -1,4 +1,4 @@
-package ru.frozenpriest.curconv.theme
+package ru.frozenpriest.curconv.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
