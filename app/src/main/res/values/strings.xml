@@ -3,4 +3,6 @@
     <string name="label_popular">Popular</string>
     <string name="label_favourite">Favorite</string>
     <string name="button_sort">Sorting settings</string>
+    <string name="in_favorite">Is in favorite</string>
+    <string name="add_to_fav">Add to favorite</string>
 </resources>

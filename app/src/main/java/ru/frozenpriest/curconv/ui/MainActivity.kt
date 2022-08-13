@@ -7,11 +7,7 @@ import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -91,25 +87,13 @@ class MainActivity : ComponentActivity() {
             NavDestination.Popular.destination,
             enterTransition = {
                 slideIntoContainer(
-                    AnimatedContentScope.SlideDirection.Left,
+                    AnimatedContentScope.SlideDirection.Right,
                     animationSpec = tween(700)
                 )
             },
             exitTransition = {
                 slideOutOfContainer(
                     AnimatedContentScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            popEnterTransition = {
-                slideIntoContainer(
-                    AnimatedContentScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            },
-            popExitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentScope.SlideDirection.Right,
                     animationSpec = tween(700)
                 )
             }
@@ -127,18 +111,6 @@ class MainActivity : ComponentActivity() {
                 )
             },
             exitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            popEnterTransition = {
-                slideIntoContainer(
-                    AnimatedContentScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            },
-            popExitTransition = {
                 slideOutOfContainer(
                     AnimatedContentScope.SlideDirection.Right,
                     animationSpec = tween(700)
