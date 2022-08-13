@@ -22,11 +22,11 @@ ext {
             material       : "1.6.1",
             // https://developer.android.google.cn/jetpack/androidx/releases/room?hl=en
             room           : "2.4.3",
-            // https://github.com/google/dagger/releases
-            dagger         : "2.43.2",
             // https://developer.android.com/jetpack/compose/navigation
             navigation     : "2.5.1",
             // https://github.com/google/accompanist/releases
-            accompanist    : "0.25.1"
+            accompanist    : "0.25.1",
+            // https://developer.android.com/jetpack/androidx/releases/hilt#hilt-navigation-compose-1.0.0
+            hiltNavigation    : "1.0.0"
     ]
 }

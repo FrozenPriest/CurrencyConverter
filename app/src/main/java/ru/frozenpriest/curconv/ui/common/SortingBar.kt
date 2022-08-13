@@ -14,14 +14,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import ru.frozenpriest.curconv.R
-import ru.frozenpriest.curconv.ui.NavDestination
 import ru.frozenpriest.curconv.ui.theme.CurConvTheme
 
 @Composable
-fun SortingBar(navController: NavController) {
+fun SortingBar(onSortClick: () -> Unit) {
     Row(
         Modifier
             .fillMaxWidth()
@@ -30,16 +27,14 @@ fun SortingBar(navController: NavController) {
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         CurrencySelector(modifier = Modifier.weight(1f))
-        SortingButton(navController)
+        SortingButton(onSortClick)
     }
 }
 
 @Composable
-fun SortingButton(navController: NavController) {
+fun SortingButton(onSortClick: () -> Unit) {
     IconButton(
-        onClick = {
-            navController.navigate(NavDestination.SortingSettings.destination)
-        }
+        onClick = onSortClick
     ) {
         Icon(
             imageVector = Icons.Filled.Sort,
@@ -53,6 +48,6 @@ fun SortingButton(navController: NavController) {
 @Composable
 fun SortingBarPreview() {
     CurConvTheme {
-        SortingBar(navController = rememberNavController())
+        SortingBar({})
     }
 }

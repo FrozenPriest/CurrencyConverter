@@ -68,13 +68,12 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:$rootProject.ext.versions.navigation"
     implementation "com.google.accompanist:accompanist-navigation-animation:$rootProject.ext.versions.accompanist"
 
+    implementation "com.google.accompanist:accompanist-swiperefresh:$rootProject.ext.versions.accompanist"
 
     //DI
-    implementation "com.google.dagger:dagger:$rootProject.ext.versions.dagger"
-    kapt "com.google.dagger:dagger-compiler:$rootProject.ext.versions.dagger"
-
     implementation "com.google.dagger:hilt-android:$rootProject.ext.hiltVersion"
     kapt "com.google.dagger:hilt-compiler:$rootProject.ext.hiltVersion"
+    implementation "androidx.hilt:hilt-navigation-compose:$rootProject.ext.versions.hiltNavigation"
 
     // For instrumentation tests
     androidTestImplementation  "com.google.dagger:hilt-android-testing:$rootProject.ext.versions.hilt"

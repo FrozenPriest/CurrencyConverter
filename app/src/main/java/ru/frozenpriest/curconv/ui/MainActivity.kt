@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
@@ -77,7 +78,10 @@ class MainActivity : ComponentActivity() {
                     alwaysShowLabel = false,
                     onClick = {
                         if (currentRoute != screen.destination) {
-                            navController.navigate(screen.destination)
+                            navController.navigate(
+                                screen.destination,
+                                navOptions = NavOptions.Builder().setLaunchSingleTop(true).build()
+                            )
                         }
                     }
                 )
