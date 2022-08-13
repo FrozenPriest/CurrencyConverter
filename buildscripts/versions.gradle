@@ -20,5 +20,11 @@ ext {
             espresso       : "3.4.0",
             // https://github.com/material-components/material-components-android/releases
             material       : "1.6.1",
+            // https://developer.android.google.cn/jetpack/androidx/releases/room?hl=en
+            room           : "2.4.3",
+            // https://github.com/google/dagger/releases
+            dagger         : "2.43.2",
+            //https://dagger.dev/hilt/gradle-setup
+            hilt           : "2.43.2"
     ]
 }

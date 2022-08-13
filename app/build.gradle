@@ -37,13 +37,16 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion rootProject.ext.versions.composeCompiler
-        kotlinCompilerVersion kotlinVersion
     }
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+}
+
+kapt {
+    correctErrorTypes true
 }
 
 dependencies {
@@ -61,4 +64,23 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.versions.espresso"
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$rootProject.ext.versions.compose"
     debugImplementation "androidx.compose.ui:ui-tooling:$rootProject.ext.versions.compose"
+
+    //DI
+    implementation "com.google.dagger:dagger:$rootProject.ext.versions.dagger"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.ext.versions.dagger"
+    implementation "com.google.dagger:hilt-android:$rootProject.ext.versions.hilt"
+    kapt "com.google.dagger:hilt-compiler:$rootProject.ext.versions.hilt"
+
+    // For instrumentation tests
+    androidTestImplementation  "com.google.dagger:hilt-android-testing:$rootProject.ext.versions.hilt"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$rootProject.ext.versions.hilt"
+
+    // For local unit tests
+    testImplementation "com.google.dagger:hilt-android-testing:$rootProject.ext.versions.hilt"
+    kaptTest "com.google.dagger:hilt-compiler:$rootProject.ext.versions.hilt"
+
+    // Room
+    implementation "androidx.room:room-runtime:$rootProject.ext.versions.room"
+    kapt "androidx.room:room-compiler:$rootProject.ext.versions.room"
+
 }
