@@ -7,4 +7,9 @@
     <string name="add_to_fav">Add to favorite</string>
     <string name="favorite_currencies">Favorite currencies:</string>
     <string name="popular_currencies">Popular currencies:</string>
+    <string name="sort_setting">Sorting:</string>
+    <string name="sort_aphabetic">Alphabetic</string>
+    <string name="is_ascending">ascending</string>
+    <string name="is_descending">descending</string>
+    <string name="sort_by_value">By value</string>
 </resources>

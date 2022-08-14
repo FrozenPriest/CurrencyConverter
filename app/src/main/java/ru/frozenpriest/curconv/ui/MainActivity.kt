@@ -26,6 +26,7 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.frozenpriest.curconv.ui.screen.favorite.FavoriteScreen
 import ru.frozenpriest.curconv.ui.screen.popular.PopularScreen
+import ru.frozenpriest.curconv.ui.screen.settings.SettingsScreen
 import ru.frozenpriest.curconv.ui.theme.CurConvTheme
 
 @AndroidEntryPoint
@@ -51,6 +52,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         favoriteScreenNavComposable(navController)
                         popularScreenNavComposable(navController)
+                        settingsScreenNavComposable()
                     }
                 }
             }
@@ -125,5 +127,24 @@ class MainActivity : ComponentActivity() {
                 )
             }
         ) { FavoriteScreen(navController) }
+    }
+
+    @OptIn(ExperimentalAnimationApi::class)
+    private fun NavGraphBuilder.settingsScreenNavComposable() {
+        composable(
+            NavDestination.SortingSettings.destination,
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentScope.SlideDirection.Down,
+                    animationSpec = tween(700)
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentScope.SlideDirection.Up,
+                    animationSpec = tween(700)
+                )
+            }
+        ) { SettingsScreen() }
     }
 }
