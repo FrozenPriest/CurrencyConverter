@@ -87,6 +87,23 @@ dependencies {
     implementation "androidx.room:room-runtime:$rootProject.ext.versions.room"
     kapt "androidx.room:room-compiler:$rootProject.ext.versions.room"
 
+    // Retrofit
+
+
+
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.versions.retrofit"
+
+    //OkHttp
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.versions.okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.versions.okhttp"
+
+    //datastore
+    implementation "androidx.datastore:datastore:$rootProject.ext.versions.datastore"
+    implementation "androidx.datastore:datastore-preferences:$rootProject.ext.versions.datastore"
+
+    //log
+    api "com.jakewharton.timber:timber:$rootProject.ext.versions.timber"
 }
 
 kapt {

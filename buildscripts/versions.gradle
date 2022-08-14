@@ -27,6 +27,14 @@ ext {
             // https://github.com/google/accompanist/releases
             accompanist    : "0.25.1",
             // https://developer.android.com/jetpack/androidx/releases/hilt#hilt-navigation-compose-1.0.0
-            hiltNavigation    : "1.0.0"
+            hiltNavigation : "1.0.0",
+            // https://github.com/square/retrofit
+            retrofit       : "2.9.0",
+            // https://square.github.io/okhttp/changelogs/changelog/
+            okhttp        : "4.10.0",
+            // https://developer.android.com/jetpack/androidx/releases/datastore
+            datastore      : "1.0.0",
+            // https://github.com/JakeWharton/timber
+            timber         : "5.0.1"
     ]
 }
