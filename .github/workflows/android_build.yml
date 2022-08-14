@@ -9,9 +9,9 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Decode APIKEY
-      env:
-        APIKEY: ${{ secrets.APIKEY }}
-      run: echo apiKey="APIKEY" > ./local.properties
+        env:
+          APIKEY: ${{ secrets.APIKEY }}
+        run: echo apiKey="APIKEY" > ./local.properties
 
       - name: Set Up JDK
         uses: actions/setup-java@v1
