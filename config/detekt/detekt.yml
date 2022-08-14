@@ -208,6 +208,7 @@ exceptions:
      - NumberFormatException
      - ParseException
      - MalformedURLException
+     - CancellationException
     allowedExceptionNameRegex: '_|(ignore|expected).*'
   ThrowingExceptionFromFinally:
     active: true
