@@ -23,6 +23,12 @@ android {
             useSupportLibrary true
         }
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+
         buildConfigField "String", "API_KEY", localProperties['apiKey']
     }
 
@@ -92,11 +98,9 @@ dependencies {
     // Room
     implementation "androidx.room:room-runtime:$rootProject.ext.versions.room"
     kapt "androidx.room:room-compiler:$rootProject.ext.versions.room"
+    implementation "androidx.room:room-ktx:$rootProject.ext.versions.room"
 
     // Retrofit
-
-
-
     implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.versions.retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.versions.retrofit"
 

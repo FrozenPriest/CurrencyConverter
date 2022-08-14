@@ -5,6 +5,6 @@ data class SortingMethod(
     val isAscending: Boolean
 )
 
-enum class SortingType {
-    Alphabet, ByValue
+enum class SortingType(val item: Int) {
+    Alphabet(1), ByValue(2)
 }

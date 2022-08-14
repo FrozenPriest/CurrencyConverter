@@ -10,11 +10,13 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.frozenpriest.curconv.data.remote.ExchangeRepository
 import ru.frozenpriest.curconv.domain.model.CurrencyValue
+import ru.frozenpriest.curconv.domain.repository.LocalRepository
 import javax.inject.Inject
 
 @HiltViewModel
 class PopularViewModel @Inject constructor(
-    private val exchangeRepository: ExchangeRepository
+    private val exchangeRepository: ExchangeRepository,
+    private val localRepository: LocalRepository
 ) : ViewModel() {
     private val _state = MutableStateFlow(FavoriteState(false, emptyList()))
     val state get() = _state.asStateFlow()
