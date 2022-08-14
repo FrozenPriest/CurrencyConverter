@@ -29,7 +29,7 @@ fun CurrencyTable(
     onFavoriteClicked: (CurrencyValue) -> Unit
 ) {
     LazyColumn(Modifier.fillMaxSize()) {
-        items(items = getItems(), key = { it.id }) { item ->
+        items(items = getItems(), key = { it.from + it.to }) { item ->
             CurrencyItem(item = item, onFavoriteClicked = { onFavoriteClicked(item) })
         }
     }
@@ -42,7 +42,9 @@ fun CurrencyItem(
     onFavoriteClicked: () -> Unit
 ) {
     Row(
-        modifier.fillMaxWidth().padding(horizontal = 16.dp),
+        modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -80,8 +82,8 @@ fun CurrencyTablePreview() {
         CurrencyTable(
             getItems = {
                 listOf(
-                    CurrencyValue(1, "USD", 12.43, true),
-                    CurrencyValue(2, "TEST", 12555.43, false)
+                    CurrencyValue("F", "USD", 12.43, true),
+                    CurrencyValue("F", "TEST", 12555.43, false)
                 )
             },
             {}

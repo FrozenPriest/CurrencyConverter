@@ -11,7 +11,4 @@ interface LocalRepository {
 
     fun getValues(symbol: Symbol, sortingMethod: SortingMethod): Flow<List<CurrencyValue>>
     suspend fun saveValues(currencyValues: List<CurrencyValue>)
-
-    fun getSortingMethod(): Flow<SortingMethod>
-    suspend fun setSortingMethod(sortingMethod: SortingMethod)
 }

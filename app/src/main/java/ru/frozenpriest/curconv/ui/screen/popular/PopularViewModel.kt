@@ -23,8 +23,8 @@ class PopularViewModel @Inject constructor() : ViewModel() {
             _state.update {
                 it.copy(
                     currencies = listOf(
-                        CurrencyValue(1, "USD", 12.43, true),
-                        CurrencyValue(2, "TEST", 12555.43, false)
+                        CurrencyValue("1", "USD", 12.43, true),
+                        CurrencyValue("2", "TEST", 12555.43, false)
                     ),
                     isLoading = false
                 )
