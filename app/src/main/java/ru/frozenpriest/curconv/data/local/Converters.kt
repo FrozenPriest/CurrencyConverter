@@ -5,5 +5,8 @@ import ru.frozenpriest.curconv.data.local.entity.SymbolEntity
 import ru.frozenpriest.curconv.domain.model.CurrencyValue
 import ru.frozenpriest.curconv.domain.model.Symbol
 
-fun SymbolEntity.toSymbol(): Symbol = Symbol(code, name)
-fun CurrencyValueEntity.toValue(): CurrencyValue = CurrencyValue(from, to, value, isFavorite)
+fun SymbolEntity.toSymbol() = Symbol(code, name)
+fun Symbol.toEntity() = SymbolEntity(code, name)
+
+fun CurrencyValueEntity.toValue() = CurrencyValue(from, to, value, isFavorite)
+fun CurrencyValue.toEntity() = CurrencyValueEntity(from, to, value, isFavorite ?: false)

@@ -16,17 +16,21 @@ class LocalRepositoryImpl @Inject constructor(
     }
 
     override suspend fun saveSymbols(symbols: List<Symbol>) {
-        TODO("Not yet implemented")
+        currencyDao.addSymbols(symbols.map { it.toEntity() })
     }
 
     override fun getValues(
         symbol: Symbol,
         sortingMethod: SortingMethod
-    ) = currencyDao.getCurrencyValues(symbol.code, sortingMethod.type.item, sortingMethod.isAscending).map { list ->
+    ) = currencyDao.getCurrencyValues(
+        symbol.code,
+        sortingMethod.type.item,
+        sortingMethod.isAscending
+    ).map { list ->
         list.map { valueEntity -> valueEntity.toValue() }
     }
 
     override suspend fun saveValues(currencyValues: List<CurrencyValue>) {
-        TODO("Not yet implemented")
+        currencyDao.addCurrencyValues(currencyValues.map { it.toEntity() })
     }
 }

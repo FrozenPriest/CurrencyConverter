@@ -1,6 +1,8 @@
 package ru.frozenpriest.curconv.data.local.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 import ru.frozenpriest.curconv.data.local.entity.CurrencyValueEntity
@@ -10,6 +12,12 @@ import ru.frozenpriest.curconv.data.local.entity.SymbolEntity
 interface CurrencyDao {
     @Query("select * from symbols")
     fun getSymbols(): Flow<List<SymbolEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addSymbols(items: List<SymbolEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addCurrencyValues(items: List<CurrencyValueEntity>)
 
     @Query(
         """
