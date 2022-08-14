@@ -7,7 +7,6 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 import ru.frozenpriest.curconv.data.local.entity.CurrencyValueEntity
 import ru.frozenpriest.curconv.data.local.entity.SymbolEntity
-import ru.frozenpriest.curconv.domain.model.CurrencyValue
 
 @Dao
 interface CurrencyDao {
@@ -55,5 +54,5 @@ interface CurrencyDao {
     ): Flow<List<CurrencyValueEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addCurrencyValue(currencyValue: CurrencyValue)
+    fun addCurrencyValue(currencyValue: CurrencyValueEntity)
 }

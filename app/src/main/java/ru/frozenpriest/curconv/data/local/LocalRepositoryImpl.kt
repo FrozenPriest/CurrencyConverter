@@ -44,6 +44,6 @@ class LocalRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateValue(currencyValue: CurrencyValue) {
-        currencyDao.addCurrencyValue(currencyValue)
+        currencyDao.addCurrencyValue(currencyValue.toEntity())
     }
 }
