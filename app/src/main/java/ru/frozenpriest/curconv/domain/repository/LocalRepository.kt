@@ -9,6 +9,6 @@ interface LocalRepository {
     fun getSymbols(): Flow<List<Symbol>>
     suspend fun saveSymbols(symbols: List<Symbol>)
 
-    fun getValues(symbol: Symbol, sortingMethod: SortingMethod): Flow<List<CurrencyValue>>
+    fun getValues(symbol: Symbol, sortingMethod: SortingMethod, favoriteOnly: Boolean): Flow<List<CurrencyValue>>
     suspend fun saveValues(currencyValues: List<CurrencyValue>)
 }

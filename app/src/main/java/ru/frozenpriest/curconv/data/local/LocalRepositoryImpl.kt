@@ -21,12 +21,21 @@ class LocalRepositoryImpl @Inject constructor(
 
     override fun getValues(
         symbol: Symbol,
-        sortingMethod: SortingMethod
-    ) = currencyDao.getCurrencyValues(
-        symbol.code,
-        sortingMethod.type.item,
-        sortingMethod.isAscending
-    ).map { list ->
+        sortingMethod: SortingMethod,
+        favoriteOnly: Boolean
+    ) = if (favoriteOnly) {
+        currencyDao.getFavoriteValues(
+            symbol.code,
+            sortingMethod.type.item,
+            sortingMethod.isAscending,
+        )
+    } else {
+        currencyDao.getCurrencyValues(
+            symbol.code,
+            sortingMethod.type.item,
+            sortingMethod.isAscending,
+        )
+    }.map { list ->
         list.map { valueEntity -> valueEntity.toValue() }
     }
 

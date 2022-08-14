@@ -22,7 +22,7 @@ interface CurrencyDao {
     @Query(
         """
         SELECT * FROM currency_values 
-        WHERE `from` LIKE :base 
+        WHERE `from` LIKE :base
         ORDER BY 
         CASE WHEN :order = 1 AND :ascending = 1 THEN `to` END ASC, 
         CASE WHEN :order = 1 AND :ascending = 0 THEN `to` END DESC,
@@ -33,6 +33,23 @@ interface CurrencyDao {
     fun getCurrencyValues(
         base: String,
         order: Int,
-        ascending: Boolean
+        ascending: Boolean,
+    ): Flow<List<CurrencyValueEntity>>
+
+    @Query(
+        """
+        SELECT * FROM currency_values 
+        WHERE `from` LIKE :base AND isFavorite = 1
+        ORDER BY 
+        CASE WHEN :order = 1 AND :ascending = 1 THEN `to` END ASC, 
+        CASE WHEN :order = 1 AND :ascending = 0 THEN `to` END DESC,
+        CASE WHEN :order = 2 AND :ascending = 1 THEN value END ASC, 
+        CASE WHEN :order = 2 AND :ascending = 0 THEN value END DESC
+        """
+    )
+    fun getFavoriteValues(
+        base: String,
+        order: Int,
+        ascending: Boolean,
     ): Flow<List<CurrencyValueEntity>>
 }
