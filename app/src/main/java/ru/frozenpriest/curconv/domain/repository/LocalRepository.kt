@@ -11,4 +11,5 @@ interface LocalRepository {
 
     fun getValues(symbol: Symbol, sortingMethod: SortingMethod, favoriteOnly: Boolean): Flow<List<CurrencyValue>>
     suspend fun saveValues(currencyValues: List<CurrencyValue>)
+    suspend fun updateValue(currencyValue: CurrencyValue)
 }
