@@ -96,16 +96,24 @@ class MainActivity : ComponentActivity() {
         composable(
             NavDestination.Popular.destination,
             enterTransition = {
-                slideIntoContainer(
-                    AnimatedContentScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
+                if (initialState.destination.route != NavDestination.SortingSettings.destination) {
+                    slideIntoContainer(
+                        AnimatedContentScope.SlideDirection.Right,
+                        animationSpec = tween(700)
+                    )
+                } else {
+                    null
+                }
             },
             exitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
+                if (targetState.destination.route != NavDestination.SortingSettings.destination) {
+                    slideOutOfContainer(
+                        AnimatedContentScope.SlideDirection.Left,
+                        animationSpec = tween(700)
+                    )
+                } else {
+                    null
+                }
             }
         ) { PopularScreen(navController) }
     }
@@ -115,16 +123,24 @@ class MainActivity : ComponentActivity() {
         composable(
             NavDestination.Favourite.destination,
             enterTransition = {
-                slideIntoContainer(
-                    AnimatedContentScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
+                if (initialState.destination.route != NavDestination.SortingSettings.destination) {
+                    slideIntoContainer(
+                        AnimatedContentScope.SlideDirection.Left,
+                        animationSpec = tween(700)
+                    )
+                } else {
+                    null
+                }
             },
             exitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
+                if (targetState.destination.route != NavDestination.SortingSettings.destination) {
+                    slideOutOfContainer(
+                        AnimatedContentScope.SlideDirection.Right,
+                        animationSpec = tween(700)
+                    )
+                } else {
+                    null
+                }
             }
         ) { FavoriteScreen(navController) }
     }
