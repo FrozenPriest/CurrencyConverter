@@ -72,16 +72,16 @@ dependencies {
 
     //DI
     implementation "com.google.dagger:hilt-android:$rootProject.ext.hiltVersion"
-    kapt "com.google.dagger:hilt-compiler:$rootProject.ext.hiltVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$rootProject.ext.hiltVersion"
     implementation "androidx.hilt:hilt-navigation-compose:$rootProject.ext.versions.hiltNavigation"
 
     // For instrumentation tests
-    androidTestImplementation  "com.google.dagger:hilt-android-testing:$rootProject.ext.versions.hilt"
-    kaptAndroidTest "com.google.dagger:hilt-compiler:$rootProject.ext.versions.hilt"
+    androidTestImplementation  "com.google.dagger:hilt-android-testing:$rootProject.ext.hiltVersion"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$rootProject.ext.hiltVersion"
 
     // For local unit tests
-    testImplementation "com.google.dagger:hilt-android-testing:$rootProject.ext.versions.hilt"
-    kaptTest "com.google.dagger:hilt-compiler:$rootProject.ext.versions.hilt"
+    testImplementation "com.google.dagger:hilt-android-testing:$rootProject.ext.hiltVersion"
+    kaptTest "com.google.dagger:hilt-android-compiler:$rootProject.ext.hiltVersion"
 
     // Room
     implementation "androidx.room:room-runtime:$rootProject.ext.versions.room"
