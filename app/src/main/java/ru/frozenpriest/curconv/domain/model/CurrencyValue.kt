@@ -4,5 +4,5 @@ data class CurrencyValue(
     val from: String,
     val to: String,
     val value: Double,
-    val isFavorite: Boolean
+    val isFavorite: Boolean? = null
 )

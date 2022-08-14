@@ -8,11 +8,14 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import ru.frozenpriest.curconv.data.remote.ExchangeRepository
 import ru.frozenpriest.curconv.domain.model.CurrencyValue
 import javax.inject.Inject
 
 @HiltViewModel
-class PopularViewModel @Inject constructor() : ViewModel() {
+class PopularViewModel @Inject constructor(
+    private val exchangeRepository: ExchangeRepository
+) : ViewModel() {
     private val _state = MutableStateFlow(FavoriteState(false, emptyList()))
     val state get() = _state.asStateFlow()
 
@@ -22,10 +25,7 @@ class PopularViewModel @Inject constructor() : ViewModel() {
             delay(2000)
             _state.update {
                 it.copy(
-                    currencies = listOf(
-                        CurrencyValue("1", "USD", 12.43, true),
-                        CurrencyValue("2", "TEST", 12555.43, false)
-                    ),
+                    currencies = exchangeRepository.getLatest("USD").getOrThrow(),
                     isLoading = false
                 )
             }

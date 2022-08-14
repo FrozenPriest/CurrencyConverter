@@ -60,8 +60,8 @@ fun CurrencyItem(
         )
         IconButton(onClick = onFavoriteClicked) {
             Icon(
-                imageVector = getFavoriteIcon(item.isFavorite),
-                contentDescription = getContentDescFavorite(item.isFavorite),
+                imageVector = getFavoriteIcon(item.isFavorite ?: false),
+                contentDescription = getContentDescFavorite(item.isFavorite ?: false),
                 tint = MaterialTheme.colors.onBackground
             )
         }

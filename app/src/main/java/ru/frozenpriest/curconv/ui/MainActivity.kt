@@ -16,9 +16,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.NavOptions
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
@@ -80,10 +80,15 @@ class MainActivity : ComponentActivity() {
                     alwaysShowLabel = false,
                     onClick = {
                         if (currentRoute != screen.destination) {
-                            navController.navigate(
-                                screen.destination,
-                                navOptions = NavOptions.Builder().setLaunchSingleTop(true).build()
-                            )
+                            navController.navigate(screen.destination) {
+                                popUpTo(navController.graph.findStartDestination().id) {
+                                    saveState = true
+                                }
+                                // Avoid multiple copies of the same destination
+                                launchSingleTop = true
+                                // Restore state when reselecting a previously selected item
+                                restoreState = true
+                            }
                         }
                     }
                 )
