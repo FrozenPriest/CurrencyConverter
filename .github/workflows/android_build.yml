@@ -11,7 +11,7 @@ jobs:
       - name: Decode APIKEY
         env:
           APIKEY: ${{ secrets.APIKEY }}
-        run: echo apiKey="APIKEY" > ./local.properties
+        run: echo apiKey="\"APIKEY\"" > ./local.properties
 
       - name: Set Up JDK
         uses: actions/setup-java@v1
