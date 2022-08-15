@@ -1,5 +1,6 @@
 package ru.frozenpriest.curconv.ui.screen.popular
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,6 +12,7 @@ import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import ru.frozenpriest.curconv.R
 import ru.frozenpriest.curconv.domain.model.CurrencyValue
 import ru.frozenpriest.curconv.domain.model.Symbol
 import ru.frozenpriest.curconv.domain.usecase.UpdateSymbolsUseCase
@@ -28,6 +30,9 @@ class PopularViewModel @Inject constructor(
 
     val symbols = updateSymbolsUseCase.symbolsFlow
     val selectedSymbol = MutableStateFlow<Symbol?>(null)
+
+    private val _errorFlow = MutableStateFlow<ErrorEvent?>(null)
+    val errorFlow get() = _errorFlow.asStateFlow()
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val currencyValues = selectedSymbol.flatMapLatest { symbolNullable ->
@@ -47,7 +52,11 @@ class PopularViewModel @Inject constructor(
 
     fun updateSymbols() {
         viewModelScope.launch {
-            updateSymbolsUseCase.update {}
+            updateSymbolsUseCase.update {
+                _errorFlow.update {
+                    ErrorEvent(R.string.error_loading)
+                }
+            }
         }
     }
 
@@ -56,7 +65,9 @@ class PopularViewModel @Inject constructor(
             val stateValue = selectedSymbol.value
             _isLoading.update { true }
             stateValue?.let {
-                updateValuesUseCase.update(it) {}
+                updateValuesUseCase.update(it) {
+                    ErrorEvent(R.string.error_loading)
+                }
             }
             _isLoading.update { false }
         }
@@ -77,3 +88,5 @@ class PopularViewModel @Inject constructor(
         refreshValues()
     }
 }
+
+data class ErrorEvent(@StringRes val error: Int)
