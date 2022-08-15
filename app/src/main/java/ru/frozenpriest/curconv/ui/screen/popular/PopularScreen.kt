@@ -19,22 +19,27 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import ru.frozenpriest.curconv.R
+import ru.frozenpriest.curconv.ui.NavDestination
 import ru.frozenpriest.curconv.ui.common.CombinedPreviews
 import ru.frozenpriest.curconv.ui.common.CurrencyTable
+import ru.frozenpriest.curconv.ui.common.SortingBar
 import ru.frozenpriest.curconv.ui.common.Spacer16
 import ru.frozenpriest.curconv.ui.theme.CurConvTheme
 
 @Composable
 fun PopularScreen(navController: NavController, viewModel: PopularViewModel = hiltViewModel()) {
-    val state by viewModel.state.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
+    val symbol by viewModel.selectedSymbol.collectAsState()
+    val symbols by viewModel.symbols.collectAsState(initial = emptyList())
+    val currencies by viewModel.currencyValues.collectAsState(initial = emptyList())
 
     LaunchedEffect(key1 = Unit) {
-        viewModel.refresh()
+        viewModel.updateSymbols()
     }
 
     SwipeRefresh(
-        state = rememberSwipeRefreshState(state.isLoading),
-        onRefresh = { viewModel.refresh() },
+        state = rememberSwipeRefreshState(isLoading),
+        onRefresh = { viewModel.refreshValues() },
     ) {
         Column(
             Modifier
@@ -42,9 +47,14 @@ fun PopularScreen(navController: NavController, viewModel: PopularViewModel = hi
                 .padding(horizontal = 8.dp)
         ) {
             Spacer16()
-//            SortingBar {
-//                navController.navigate(NavDestination.SortingSettings.destination)
-//            }
+            SortingBar(
+                selectedSymbol = symbol,
+                symbols = symbols,
+                onSymbolChanged = viewModel::setSymbol,
+                onSortClick = {
+                    navController.navigate(NavDestination.SortingSettings.destination)
+                }
+            )
             Divider()
             Spacer16()
             Text(
@@ -52,7 +62,7 @@ fun PopularScreen(navController: NavController, viewModel: PopularViewModel = hi
                 style = MaterialTheme.typography.h1
             )
             CurrencyTable(
-                items = state.currencies,
+                items = currencies,
                 viewModel::favoriteClicked
             )
         }

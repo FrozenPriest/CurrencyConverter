@@ -79,16 +79,14 @@ class MainActivity : ComponentActivity() {
                     selected = currentRoute == screen.destination,
                     alwaysShowLabel = false,
                     onClick = {
-                        if (currentRoute != screen.destination) {
-                            navController.navigate(screen.destination) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                                // Avoid multiple copies of the same destination
-                                launchSingleTop = true
-                                // Restore state when reselecting a previously selected item
-                                restoreState = true
+                        navController.navigate(screen.destination) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
                             }
+                            // Avoid multiple copies of the same destination
+                            launchSingleTop = true
+                            // Restore state when reselecting a previously selected item
+                            restoreState = true
                         }
                     }
                 )

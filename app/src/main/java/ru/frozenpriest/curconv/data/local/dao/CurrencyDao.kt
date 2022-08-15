@@ -4,6 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 import ru.frozenpriest.curconv.data.local.entity.CurrencyValueEntity
 import ru.frozenpriest.curconv.data.local.entity.CurrencyValuePartial
@@ -17,8 +19,20 @@ interface CurrencyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addSymbols(items: List<SymbolEntity>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE, entity = CurrencyValueEntity::class)
-    suspend fun addCurrencyValues(items: List<CurrencyValuePartial>)
+    @Insert(onConflict = OnConflictStrategy.IGNORE, entity = CurrencyValueEntity::class)
+    suspend fun addCurrencyValue(items: CurrencyValuePartial): Long
+
+    @Update(entity = CurrencyValueEntity::class)
+    suspend fun updateCurrencyValue(item: CurrencyValuePartial)
+
+    @Transaction
+    suspend fun updateOrAdd(items: List<CurrencyValuePartial>) {
+        items.forEach { item ->
+            if (addCurrencyValue(item) == -1L) {
+                updateCurrencyValue(item)
+            }
+        }
+    }
 
     @Query(
         """

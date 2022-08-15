@@ -16,6 +16,7 @@ import ru.frozenpriest.curconv.domain.model.CurrencyValue
 import ru.frozenpriest.curconv.domain.model.Symbol
 import ru.frozenpriest.curconv.domain.usecase.UpdateSymbolsUseCase
 import ru.frozenpriest.curconv.domain.usecase.UpdateValuesUseCase
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,18 +32,16 @@ class FavoriteViewModel @Inject constructor(
 
     @OptIn(FlowPreview::class)
     val currencyValues = selectedSymbol.flatMapMerge { symbolNullable ->
+        refreshValues()
         symbolNullable?.let { symbol -> updateValuesUseCase.getValues(symbol, true) }
             ?: emptyFlow()
     }
 
     init {
+        Timber.d("Reiniting viewmodel $this")
         viewModelScope.launch {
             symbols.collectLatest { symbols ->
-                selectedSymbol.update { symbols.firstOrNull() }
-            }
-
-            selectedSymbol.collectLatest {
-                refreshValues()
+                if (selectedSymbol.value == null) selectedSymbol.update { symbols.firstOrNull() }
             }
         }
     }
