@@ -1,6 +1,5 @@
 package ru.frozenpriest.curconv.ui.screen.popular
 
-import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -77,8 +76,4 @@ class PopularViewModel @Inject constructor(
         selectedSymbol.update { symbol }
         refreshValues()
     }
-}
-
-sealed class Event(@StringRes val message: Int?) {
-    class Error(@StringRes errorMessage: Int) : Event(errorMessage)
 }
