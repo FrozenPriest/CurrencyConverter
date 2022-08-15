@@ -41,9 +41,13 @@ fun FavoriteScreen(navController: NavController, viewModel: FavoriteViewModel = 
                 .padding(horizontal = 8.dp)
         ) {
             Spacer16()
-            SortingBar {
-                navController.navigate(NavDestination.SortingSettings.destination)
-            }
+            SortingBar(
+                selectedSymbol = state.symbol,
+                onSymbolChanged = viewModel::setSymbol,
+                onSortClick = {
+                    navController.navigate(NavDestination.SortingSettings.destination)
+                }
+            )
             Divider()
             Spacer16()
             Text(

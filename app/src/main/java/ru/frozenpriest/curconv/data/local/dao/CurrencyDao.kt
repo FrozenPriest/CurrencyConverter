@@ -55,5 +55,5 @@ interface CurrencyDao {
     ): Flow<List<CurrencyValueEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addCurrencyValue(currencyValue: CurrencyValueEntity)
+    suspend fun addCurrencyValue(currencyValue: CurrencyValueEntity)
 }

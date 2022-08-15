@@ -39,6 +39,10 @@ class LocalRepositoryImpl @Inject constructor(
         list.map { valueEntity -> valueEntity.toValue() }
     }
 
+    /**
+     * Used to save values from internet
+     * Ignores 'isFavorite' field
+     */
     override suspend fun saveValues(currencyValues: List<CurrencyValue>) {
         currencyDao.addCurrencyValues(currencyValues.map { it.toPartialEntity() })
     }
