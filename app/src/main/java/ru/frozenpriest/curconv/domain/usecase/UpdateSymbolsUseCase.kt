@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 interface UpdateSymbolsUseCase {
     val symbolsFlow: Flow<List<Symbol>>
-    suspend fun update(onError: (Throwable) -> Unit)
+    suspend fun update(onError: suspend (Throwable) -> Unit)
 }
 
 class UpdateSymbolsUseCaseImpl @Inject constructor(
@@ -17,7 +17,7 @@ class UpdateSymbolsUseCaseImpl @Inject constructor(
 ) : UpdateSymbolsUseCase {
     override val symbolsFlow = localRepository.getSymbols()
 
-    override suspend fun update(onError: (Throwable) -> Unit) {
+    override suspend fun update(onError: suspend (Throwable) -> Unit) {
         remoteRepository.getSymbols().fold(
             onSuccess = { symbols ->
                 localRepository.saveSymbols(symbols)

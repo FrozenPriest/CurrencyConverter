@@ -12,4 +12,5 @@
     <string name="is_ascending">ascending</string>
     <string name="is_descending">descending</string>
     <string name="sort_by_value">By value</string>
+    <string name="error_loading">Can\'t update currencies, please try again later</string>
 </resources>

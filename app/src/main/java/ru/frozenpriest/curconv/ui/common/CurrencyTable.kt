@@ -25,11 +25,11 @@ import ru.frozenpriest.curconv.ui.theme.CurConvTheme
 
 @Composable
 fun CurrencyTable(
-    getItems: () -> List<CurrencyValue>,
+    items: List<CurrencyValue>,
     onFavoriteClicked: (CurrencyValue) -> Unit
 ) {
     LazyColumn(Modifier.fillMaxSize()) {
-        items(items = getItems(), key = { it.from + it.to }) { item ->
+        this.items(items = items, key = { it.from + it.to }) { item ->
             CurrencyItem(item = item, onFavoriteClicked = { onFavoriteClicked(item) })
         }
     }
@@ -80,12 +80,10 @@ private fun getFavoriteIcon(isFavorite: Boolean) =
 fun CurrencyTablePreview() {
     CurConvTheme {
         CurrencyTable(
-            getItems = {
-                listOf(
-                    CurrencyValue("F", "USD", 12.43, true),
-                    CurrencyValue("F", "TEST", 12555.43, false)
-                )
-            },
+            items = listOf(
+                CurrencyValue("F", "USD", 12.43, true),
+                CurrencyValue("F", "TEST", 12555.43, false)
+            ),
             {}
         )
     }

@@ -25,15 +25,18 @@ import ru.frozenpriest.curconv.ui.common.Spacer16
 
 @Composable
 fun FavoriteScreen(navController: NavController, viewModel: FavoriteViewModel = hiltViewModel()) {
-    val state by viewModel.state.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
+    val symbol by viewModel.selectedSymbol.collectAsState()
+    val symbols by viewModel.symbols.collectAsState(initial = emptyList())
+    val currencies by viewModel.currencyValues.collectAsState(initial = emptyList())
 
     LaunchedEffect(key1 = Unit) {
-        viewModel.refresh()
+        viewModel.updateSymbols()
     }
 
     SwipeRefresh(
-        state = rememberSwipeRefreshState(state.isLoading),
-        onRefresh = { viewModel.refresh() },
+        state = rememberSwipeRefreshState(isLoading),
+        onRefresh = { viewModel.refreshValues() },
     ) {
         Column(
             Modifier
@@ -42,7 +45,8 @@ fun FavoriteScreen(navController: NavController, viewModel: FavoriteViewModel = 
         ) {
             Spacer16()
             SortingBar(
-                selectedSymbol = state.symbol,
+                selectedSymbol = symbol,
+                symbols = symbols,
                 onSymbolChanged = viewModel::setSymbol,
                 onSortClick = {
                     navController.navigate(NavDestination.SortingSettings.destination)
@@ -55,7 +59,7 @@ fun FavoriteScreen(navController: NavController, viewModel: FavoriteViewModel = 
                 style = MaterialTheme.typography.h1
             )
             CurrencyTable(
-                getItems = state::currencies,
+                items = currencies,
                 viewModel::favoriteClicked
             )
         }

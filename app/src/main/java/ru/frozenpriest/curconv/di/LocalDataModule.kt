@@ -19,6 +19,7 @@ import ru.frozenpriest.curconv.domain.repository.DataStoreRepository
 import ru.frozenpriest.curconv.domain.repository.LocalRepository
 import ru.frozenpriest.curconv.domain.usecase.UpdateSymbolsUseCase
 import ru.frozenpriest.curconv.domain.usecase.UpdateSymbolsUseCaseImpl
+import ru.frozenpriest.curconv.domain.usecase.UpdateValuesUseCase
 import ru.frozenpriest.curconv.domain.usecase.UpdateValuesUseCaseImpl
 import javax.inject.Singleton
 
@@ -55,5 +56,5 @@ abstract class LocalDataModule {
     abstract fun bindUpdateSymbols(updateSymbolsUseCase: UpdateSymbolsUseCaseImpl): UpdateSymbolsUseCase
 
     @Binds
-    abstract fun bindUpdateValues(updateValuesUseCaseImpl: UpdateValuesUseCaseImpl): UpdateSymbolsUseCase
+    abstract fun bindUpdateValues(updateValuesUseCaseImpl: UpdateValuesUseCaseImpl): UpdateValuesUseCase
 }

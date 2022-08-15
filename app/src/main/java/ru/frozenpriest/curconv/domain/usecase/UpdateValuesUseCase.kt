@@ -12,7 +12,8 @@ import javax.inject.Inject
 
 interface UpdateValuesUseCase {
     fun getValues(symbol: Symbol, favoriteOnly: Boolean): Flow<List<CurrencyValue>>
-    suspend fun update(symbol: Symbol, onError: (Throwable) -> Unit)
+    suspend fun update(symbol: Symbol, onError: suspend (Throwable) -> Unit)
+    suspend fun updateLocalValue(value: CurrencyValue)
 }
 
 class UpdateValuesUseCaseImpl @Inject constructor(
@@ -26,7 +27,7 @@ class UpdateValuesUseCaseImpl @Inject constructor(
             localRepository.getValues(symbol, it, favoriteOnly)
         }
 
-    override suspend fun update(symbol: Symbol, onError: (Throwable) -> Unit) {
+    override suspend fun update(symbol: Symbol, onError: suspend (Throwable) -> Unit) {
         remoteRepository.getLatest(symbol.code).fold(
             onSuccess = { currencyValues ->
                 localRepository.saveValues(currencyValues)
@@ -35,5 +36,9 @@ class UpdateValuesUseCaseImpl @Inject constructor(
                 onError(it)
             }
         )
+    }
+
+    override suspend fun updateLocalValue(value: CurrencyValue) {
+        localRepository.updateValue(value)
     }
 }

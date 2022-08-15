@@ -19,10 +19,8 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import ru.frozenpriest.curconv.R
-import ru.frozenpriest.curconv.ui.NavDestination
 import ru.frozenpriest.curconv.ui.common.CombinedPreviews
 import ru.frozenpriest.curconv.ui.common.CurrencyTable
-import ru.frozenpriest.curconv.ui.common.SortingBar
 import ru.frozenpriest.curconv.ui.common.Spacer16
 import ru.frozenpriest.curconv.ui.theme.CurConvTheme
 
@@ -44,9 +42,9 @@ fun PopularScreen(navController: NavController, viewModel: PopularViewModel = hi
                 .padding(horizontal = 8.dp)
         ) {
             Spacer16()
-            SortingBar {
-                navController.navigate(NavDestination.SortingSettings.destination)
-            }
+//            SortingBar {
+//                navController.navigate(NavDestination.SortingSettings.destination)
+//            }
             Divider()
             Spacer16()
             Text(
@@ -54,7 +52,7 @@ fun PopularScreen(navController: NavController, viewModel: PopularViewModel = hi
                 style = MaterialTheme.typography.h1
             )
             CurrencyTable(
-                getItems = state::currencies,
+                items = state.currencies,
                 viewModel::favoriteClicked
             )
         }
