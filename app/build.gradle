@@ -29,7 +29,7 @@ android {
             }
         }
 
-        buildConfigField "String", "API_KEY", localProperties['apiKey']
+        buildConfigField "String", "API_KEY", '"MTwkvqSyWWxv3ixMdfyisaM8Aba8U9Mi"'
     }
 
     buildTypes {
