@@ -2,10 +2,27 @@ package ru.frozenpriest.curconv.data.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.Index
 
 @Entity(
     tableName = "currency_values",
-    primaryKeys = ["from", "to"]
+    primaryKeys = ["from", "to"],
+    foreignKeys = [
+        ForeignKey(
+            entity = SymbolEntity::class,
+            parentColumns = ["code"],
+            childColumns = ["from"],
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = SymbolEntity::class,
+            parentColumns = ["code"],
+            childColumns = ["to"],
+            onDelete = ForeignKey.CASCADE
+        ),
+    ],
+    indices = [Index("from"), Index("to")]
 )
 data class CurrencyValueEntity(
     @ColumnInfo(name = "from")

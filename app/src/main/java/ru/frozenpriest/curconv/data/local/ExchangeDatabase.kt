@@ -3,6 +3,7 @@ package ru.frozenpriest.curconv.data.local
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import ru.frozenpriest.curconv.data.local.dao.CurrencyDao
+import ru.frozenpriest.curconv.data.local.dao.SymbolDao
 import ru.frozenpriest.curconv.data.local.entity.CurrencyValueEntity
 import ru.frozenpriest.curconv.data.local.entity.SymbolEntity
 
@@ -16,4 +17,5 @@ import ru.frozenpriest.curconv.data.local.entity.SymbolEntity
 )
 abstract class ExchangeDatabase : RoomDatabase() {
     abstract fun currencyDao(): CurrencyDao
+    abstract fun symbolDao(): SymbolDao
 }

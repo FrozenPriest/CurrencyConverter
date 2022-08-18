@@ -12,7 +12,6 @@ import dagger.hilt.components.SingletonComponent
 import ru.frozenpriest.curconv.data.local.DataStoreRepositoryImpl
 import ru.frozenpriest.curconv.data.local.ExchangeDatabase
 import ru.frozenpriest.curconv.data.local.LocalRepositoryImpl
-import ru.frozenpriest.curconv.data.local.dao.CurrencyDao
 import ru.frozenpriest.curconv.domain.DispatcherProvider
 import ru.frozenpriest.curconv.domain.DispatcherProviderImpl
 import ru.frozenpriest.curconv.domain.repository.DataStoreRepository
@@ -45,12 +44,14 @@ abstract class LocalDataModule {
         }
 
         @Provides
-        fun provideDao(database: ExchangeDatabase) = database.currencyDao()
+        fun provideCurrencyDao(database: ExchangeDatabase) = database.currencyDao()
 
         @Provides
-        fun provideLocalRepository(currencyDao: CurrencyDao): LocalRepository =
-            LocalRepositoryImpl(currencyDao)
+        fun provideSymbolDao(database: ExchangeDatabase) = database.symbolDao()
     }
+
+    @Binds
+    abstract fun provideLocalRepository(impl: LocalRepositoryImpl): LocalRepository
 
     @Binds
     abstract fun bindUpdateSymbols(updateSymbolsUseCase: UpdateSymbolsUseCaseImpl): UpdateSymbolsUseCase
