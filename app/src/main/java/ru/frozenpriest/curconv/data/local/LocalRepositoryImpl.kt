@@ -46,7 +46,7 @@ class LocalRepositoryImpl @Inject constructor(
      * Ignores 'isFavorite' field
      */
     override suspend fun saveValues(currencyValues: List<CurrencyValue>) {
-        currencyDao.updateOrAdd(currencyValues.map { it.toPartialEntity() })
+        currencyDao.upsert(currencyValues.map { it.toPartialEntity() })
     }
 
     override suspend fun updateValue(currencyValue: CurrencyValue) {

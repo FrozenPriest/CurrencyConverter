@@ -26,7 +26,7 @@ interface CurrencyDao {
     suspend fun updateCurrencyValue(item: CurrencyValuePartial)
 
     @Transaction
-    suspend fun updateOrAdd(items: List<CurrencyValuePartial>) {
+    suspend fun upsert(items: List<CurrencyValuePartial>) {
         items.forEach { item ->
             if (addCurrencyValue(item) == -1L) {
                 updateCurrencyValue(item)
