@@ -15,9 +15,9 @@ class ExchangeRepository @Inject constructor(
 ) : RemoteRepository {
     override suspend fun getSymbols() = withContext(dispatchers.io()) {
         try {
-            val result = api.getSymbols()
+            val result = api.getSymbols().body()
 
-            if (result.success) {
+            if (result?.success == true) {
                 Result.success(result.symbols.map { Symbol(it.key, it.value) })
             } else {
                 Result.failure(IllegalStateException("Error getting symbols"))
@@ -30,11 +30,11 @@ class ExchangeRepository @Inject constructor(
         }
     }
 
-    override suspend fun getLatest(symbol: String) = withContext(dispatchers.io()) {
+    override suspend fun getLatest(code: String) = withContext(dispatchers.io()) {
         try {
-            val result = api.getLatest(symbol)
+            val result = api.getLatest(code).body()
 
-            if (result.success) {
+            if (result?.success == true) {
                 Result.success(result.rates.map { CurrencyValue(result.base, it.key, it.value) })
             } else {
                 Result.failure(IllegalStateException("Error getting symbols"))

@@ -51,6 +51,10 @@ abstract class BaseDao<T> {
     @Delete
     abstract suspend fun delete(obj: T)
 
+    /**
+     * Insert new item. If object already exists updates it
+     * @param obj the object to be upserted
+     */
     @Transaction
     open suspend fun upsert(obj: T) {
         val id = insert(obj)
@@ -59,6 +63,10 @@ abstract class BaseDao<T> {
         }
     }
 
+    /**
+     * Insert new item. If object already exists updates it
+     * @param objList list of the objects to be upserted
+     */
     @Transaction
     open suspend fun upsert(objList: List<T>) {
         val insertResult = insert(objList)

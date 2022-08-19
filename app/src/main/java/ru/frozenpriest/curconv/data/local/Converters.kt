@@ -1,3 +1,6 @@
+/**
+ * File containing data <-> domain model mappers
+ */
 package ru.frozenpriest.curconv.data.local
 
 import ru.frozenpriest.curconv.data.local.entity.CurrencyValueEntity

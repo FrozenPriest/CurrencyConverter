@@ -5,6 +5,13 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 
+/**
+ * Entity containing currency exchange rate
+ * @param from initial currency code
+ * @param to exchanged currency code
+ * @param value exchange rate value
+ * @param isFavorite currency is in favorites
+ */
 @Entity(
     tableName = "currency_values",
     primaryKeys = ["from", "to"],
@@ -35,6 +42,9 @@ data class CurrencyValueEntity(
     val isFavorite: Boolean
 )
 
+/**
+ * Partial currency_value entity without isFavorite
+ */
 @Entity
 data class CurrencyValuePartial(
     @ColumnInfo(name = "from")

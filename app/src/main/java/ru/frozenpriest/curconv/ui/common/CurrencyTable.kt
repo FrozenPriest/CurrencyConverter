@@ -1,5 +1,6 @@
 package ru.frozenpriest.curconv.ui.common
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,18 +24,34 @@ import ru.frozenpriest.curconv.R
 import ru.frozenpriest.curconv.domain.model.CurrencyValue
 import ru.frozenpriest.curconv.ui.theme.CurConvTheme
 
+/**
+ * Lazy table with exchange rates
+ * @param items list of exchange rates to be shown
+ * @param onFavoriteClicked is called when favorite button is clicked
+ */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CurrencyTable(
     items: List<CurrencyValue>,
     onFavoriteClicked: (CurrencyValue) -> Unit
 ) {
     LazyColumn(Modifier.fillMaxSize()) {
-        this.items(items = items, key = { it.from + it.to }) { item ->
-            CurrencyItem(item = item, onFavoriteClicked = { onFavoriteClicked(item) })
+        this.items(items = items, key = { "${it.from} + ${it.to}" }) { item ->
+            CurrencyItem(
+                modifier = Modifier.animateItemPlacement(),
+                item = item,
+                onFavoriteClicked = { onFavoriteClicked(item) }
+            )
         }
     }
 }
 
+/**
+ * Item showing info about exchange rate
+ * @param modifier modifier
+ * @param item exchange rate to be shown
+ * @param onFavoriteClicked is called when favorite button is clicked
+ */
 @Composable
 fun CurrencyItem(
     modifier: Modifier = Modifier,

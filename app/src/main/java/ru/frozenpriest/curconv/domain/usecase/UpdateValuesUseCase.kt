@@ -11,8 +11,24 @@ import ru.frozenpriest.curconv.domain.repository.RemoteRepository
 import javax.inject.Inject
 
 interface UpdateValuesUseCase {
+    /**
+     * Flow of exchange rates for selected currency
+     * @param symbol selected currency
+     * @param favoriteOnly flag for showing only favorite currencies
+     */
     fun getValues(symbol: Symbol, favoriteOnly: Boolean): Flow<List<CurrencyValue>>
+
+    /**
+     * Request for updating local data from remote source
+     * @param symbol currency
+     * @param onError callback when error is thrown
+     */
     suspend fun update(symbol: Symbol, onError: suspend (Throwable) -> Unit)
+
+    /**
+     * Update exchange rate in local database
+     * @param value exchange rate to be updated
+     */
     suspend fun updateLocalValue(value: CurrencyValue)
 }
 

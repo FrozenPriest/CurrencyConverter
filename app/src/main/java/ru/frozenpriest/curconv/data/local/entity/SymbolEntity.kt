@@ -4,6 +4,11 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * Entity containing currency code and name
+ * @param code currency code
+ * @param name full currency name
+ */
 @Entity(tableName = "symbols")
 data class SymbolEntity(
     @PrimaryKey

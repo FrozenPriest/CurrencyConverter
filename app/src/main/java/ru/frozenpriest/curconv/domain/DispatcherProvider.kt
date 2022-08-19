@@ -4,6 +4,9 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
+/**
+ * Coroutine dispatcher provider
+ */
 interface DispatcherProvider {
     fun io(): CoroutineDispatcher
     fun main(): CoroutineDispatcher

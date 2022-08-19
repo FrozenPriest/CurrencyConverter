@@ -1,5 +1,6 @@
 package ru.frozenpriest.curconv.data.local
 
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import ru.frozenpriest.curconv.data.local.dao.CurrencyDao
 import ru.frozenpriest.curconv.data.local.dao.SymbolDao
@@ -13,9 +14,11 @@ class LocalRepositoryImpl @Inject constructor(
     private val currencyDao: CurrencyDao,
     private val symbolDao: SymbolDao
 ) : LocalRepository {
-    override fun getSymbols() = symbolDao.getSymbols().map { list ->
-        list.map { symbolEntity -> symbolEntity.toSymbol() }
-    }
+    override fun getSymbols() = symbolDao.getSymbols()
+        .distinctUntilChanged()
+        .map { list ->
+            list.map { symbolEntity -> symbolEntity.toSymbol() }
+        }
 
     override suspend fun saveSymbols(symbols: List<Symbol>) {
         symbolDao.upsert(symbols.map { it.toEntity() })
@@ -28,16 +31,16 @@ class LocalRepositoryImpl @Inject constructor(
     ) = if (favoriteOnly) {
         currencyDao.getFavoriteValues(
             symbol.code,
-            sortingMethod.type.item,
+            sortingMethod.type.id,
             sortingMethod.isAscending,
         )
     } else {
         currencyDao.getCurrencyValues(
             symbol.code,
-            sortingMethod.type.item,
+            sortingMethod.type.id,
             sortingMethod.isAscending,
         )
-    }.map { list ->
+    }.distinctUntilChanged().map { list ->
         list.map { valueEntity -> valueEntity.toValue() }
     }
 

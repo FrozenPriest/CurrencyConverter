@@ -17,6 +17,12 @@ import androidx.compose.ui.unit.dp
 import ru.frozenpriest.curconv.domain.model.Symbol
 import ru.frozenpriest.curconv.ui.theme.CurConvTheme
 
+/**
+ * Expanding list that allows to select one symbol
+ * @param symbols list of symbol to be shown and selected from
+ * @param isSelecting when true list is expanded and shows all symbols
+ * @param onSymbolSelected is called when user clicks on symbol from expanded lists
+ */
 @Composable
 fun CurrencySelector(
     symbols: List<Symbol>,
