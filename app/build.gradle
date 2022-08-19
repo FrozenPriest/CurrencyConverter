@@ -114,6 +114,8 @@ dependencies {
 
     //log
     api "com.jakewharton.timber:timber:$rootProject.ext.versions.timber"
+
+    androidTestImplementation "app.cash.turbine:turbine:$rootProject.ext.versions.turbine"
 }
 
 kapt {

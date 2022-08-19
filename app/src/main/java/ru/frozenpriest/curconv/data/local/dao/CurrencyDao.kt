@@ -9,16 +9,9 @@ import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 import ru.frozenpriest.curconv.data.local.entity.CurrencyValueEntity
 import ru.frozenpriest.curconv.data.local.entity.CurrencyValuePartial
-import ru.frozenpriest.curconv.data.local.entity.SymbolEntity
 
 @Dao
 interface CurrencyDao {
-    @Query("select * from symbols")
-    fun getSymbols(): Flow<List<SymbolEntity>>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addSymbols(items: List<SymbolEntity>)
-
     @Insert(onConflict = OnConflictStrategy.IGNORE, entity = CurrencyValueEntity::class)
     suspend fun addCurrencyValue(items: CurrencyValuePartial): Long
 
