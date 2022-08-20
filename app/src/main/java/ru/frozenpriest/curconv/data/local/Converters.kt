@@ -15,3 +15,6 @@ fun Symbol.toEntity() = SymbolEntity(code, name)
 fun CurrencyValueEntity.toValue() = CurrencyValue(from, to, value, isFavorite)
 fun CurrencyValue.toEntity() = CurrencyValueEntity(from, to, value, isFavorite ?: false)
 fun CurrencyValue.toPartialEntity() = CurrencyValuePartial(from, to, value)
+
+fun CurrencyValuePartial.toFull() = CurrencyValueEntity(from, to, value, false)
+fun CurrencyValueEntity.toPartial() = CurrencyValuePartial(from, to, value)
