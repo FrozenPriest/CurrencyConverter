@@ -19,6 +19,11 @@ jobs:
         with:
           ruby-version: 2.6
 
+      - name: Decode APIKEY
+        env:
+          APIKEY: ${{ secrets.APIKEY }}
+        run: echo apiKey="\"APIKEY\"" > ./local.properties
+
       - name: Danger Checks
         run: |
           ./gradlew dependencyUpdates

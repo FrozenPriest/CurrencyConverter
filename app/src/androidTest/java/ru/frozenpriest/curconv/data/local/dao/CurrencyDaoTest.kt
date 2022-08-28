@@ -17,6 +17,8 @@ import ru.frozenpriest.curconv.data.local.ExchangeDatabase
 import ru.frozenpriest.curconv.data.local.entity.CurrencyValueEntity
 import ru.frozenpriest.curconv.data.local.entity.CurrencyValuePartial
 import ru.frozenpriest.curconv.data.local.entity.SymbolEntity
+import ru.frozenpriest.curconv.data.local.toFull
+import ru.frozenpriest.curconv.data.local.toPartial
 import ru.frozenpriest.curconv.domain.model.SortingType
 import java.io.IOException
 
@@ -81,6 +83,3 @@ class CurrencyDaoTest {
         }
     }
 }
-
-private fun CurrencyValuePartial.toFull() = CurrencyValueEntity(from, to, value, false)
-private fun CurrencyValueEntity.toPartial() = CurrencyValuePartial(from, to, value)
